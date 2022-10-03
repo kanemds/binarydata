@@ -14,12 +14,12 @@ function App() {
     const data = new FormData()
     data.append('file', image)
 
-    fetch('http://localhost:8000/upload', {
+    fetch('http://localhost:4567/upload', {
       method: 'POST',
       body: data,
     }).then((response) => {
       response.json().then((body) => {
-        this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+        setImage({ imageURL: `http://localhost:4567/${body.file}` });
       });
     });
   }
