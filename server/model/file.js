@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const fileSchema = new mongoose.Schema({
-  img: String
+  image: String
 })
 
 module.exports = mongoose.model('file', fileSchema)
