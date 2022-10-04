@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const { postRequest } = require('../../controllers/uploadController')
+const { postRequest, getRequest } = require('../../controllers/uploadController')
 
-
+router.get('/', getRequest)
 router.post('/', postRequest)
 
 module.exports = router
