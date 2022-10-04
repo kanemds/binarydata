@@ -1,16 +1,23 @@
 const File = require('../model/file')
+const storage = require('../firebase')
+const { ref, uploadBytes, getDownloadURL } = require('firebase/storage')
 
 const postRequest = async (req, res) => {
-  console.log(req.files.file);
-  // let imageFile = req.files.file;
 
-  // imageFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function (err) {
-  //   if (err) {
-  //     return res.status(500).send(err);
-  //   }
+  const image = await req.files.file
+  const fileName = new Date().getTime() + image.name
 
-  //   res.json({ file: `public/${req.body.filename}.jpg` });
-  // });
+  const imageRef = ref(storage, `image/${fileName}`)
+  uploadBytes(imageRef, image.data).then(snapshot => {
+    getDownloadURL(snapshot.ref).then(url => {
+      console.log(url)
+    })
+  })
+  const newImage = new File({
+    image: imageRef
+  })
+  const saveImage = await newImage.save()
+  res.status(200).json(saveImage)
 }
 
 module.exports = { postRequest }
