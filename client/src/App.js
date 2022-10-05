@@ -21,8 +21,6 @@ function App() {
   };
 
   const [open, setOpen] = React.useState(false);
-
-
   const [image, setImage] = useState(null)
   const [viewImage, setViewImage] = useState(null)
   const [images, setImages] = useState()
@@ -110,7 +108,7 @@ function App() {
   return (
     <div className="App">
       <OutlinedInput
-        sx={{ m: 1 }}
+        sx={{ mt: 20, }}
         type='file'
         onChange={e => setImage(e.target.files[0])}
       />
